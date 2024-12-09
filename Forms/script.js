@@ -202,139 +202,139 @@ function generateActivities(unitNumber, numActivities) {
     }
 }
 
-document.getElementById("salvarDados").addEventListener("click", function() {
-    const formData = {};
+// document.getElementById("salvarDados").addEventListener("click", function() {
+//     const formData = {};
 
-    formData.curso = document.getElementById("curso").value;
-    formData.disciplina = document.getElementById("disciplina").value;
-    formData.semestre = document.getElementById("semestre").value;
-    formData.periodoPlanejamento = document.getElementById("periodoPlanejamento").value;
-    formData.periodoOferta = document.getElementById("periodoOferta").value;
-    formData.formatoOferta = document.getElementById("formatoOferta").value;
-    formData.professor = document.getElementById("professor").value;
-    formData.modeloFoto = document.querySelector('input[name="modeloFoto"]:checked')?.value;
-    formData.comentario = document.getElementById("comentario").value;
-    formData.cargaTotal = document.getElementById("cargaTotal").value;
-    formData.cargaDistancia = document.getElementById("cargaDistancia").value;
-    formData.cargaSincrona = document.getElementById("cargaSincrona").value;
-    formData.cargaAssincrona = document.getElementById("cargaAssincrona").value;
-    formData.cargaPresencial = document.getElementById("cargaPresencial").value;
-    formData.totalUnidades = document.getElementById("totalUnidades").value;
+//     formData.curso = document.getElementById("curso").value;
+//     formData.disciplina = document.getElementById("disciplina").value;
+//     formData.semestre = document.getElementById("semestre").value;
+//     formData.periodoPlanejamento = document.getElementById("periodoPlanejamento").value;
+//     formData.periodoOferta = document.getElementById("periodoOferta").value;
+//     formData.formatoOferta = document.getElementById("formatoOferta").value;
+//     formData.professor = document.getElementById("professor").value;
+//     formData.modeloFoto = document.querySelector('input[name="modeloFoto"]:checked')?.value;
+//     formData.comentario = document.getElementById("comentario").value;
+//     formData.cargaTotal = document.getElementById("cargaTotal").value;
+//     formData.cargaDistancia = document.getElementById("cargaDistancia").value;
+//     formData.cargaSincrona = document.getElementById("cargaSincrona").value;
+//     formData.cargaAssincrona = document.getElementById("cargaAssincrona").value;
+//     formData.cargaPresencial = document.getElementById("cargaPresencial").value;
+//     formData.totalUnidades = document.getElementById("totalUnidades").value;
 
-    const unidades = [];
-    const totalUnidades = document.getElementById("totalUnidades").value;
+//     const unidades = [];
+//     const totalUnidades = document.getElementById("totalUnidades").value;
     
-    for (let i = 1; i <= totalUnidades; i++) {
-        const unidade = {
-            unidade: document.querySelector(`[name="unidade${i}"]`).value,
-            chSemestre: document.querySelector(`[name="chSemestre${i}"]`).value,
-            inicioPeriodo: document.querySelector(`[name="inicioPeriodo${i}"]`).value,
-            fimPeriodo: document.querySelector(`[name="fimPeriodo${i}"]`).value,
-            tituloUnidade: document.querySelector(`[name="tituloUnidade${i}"]`).value,
-            descricaoUnidade: document.querySelector(`[name="descricaoUnidade${i}"]`).value,
-            totalEncontros: document.querySelector(`[name="totalEncontros${i}"]`)?.value,
-            totalAtividades: document.querySelector(`[name="atividadesUnidade${i}"]`)?.value
-        };
+//     for (let i = 1; i <= totalUnidades; i++) {
+//         const unidade = {
+//             unidade: document.querySelector(`[name="unidade${i}"]`).value,
+//             chSemestre: document.querySelector(`[name="chSemestre${i}"]`).value,
+//             inicioPeriodo: document.querySelector(`[name="inicioPeriodo${i}"]`).value,
+//             fimPeriodo: document.querySelector(`[name="fimPeriodo${i}"]`).value,
+//             tituloUnidade: document.querySelector(`[name="tituloUnidade${i}"]`).value,
+//             descricaoUnidade: document.querySelector(`[name="descricaoUnidade${i}"]`).value,
+//             totalEncontros: document.querySelector(`[name="totalEncontros${i}"]`)?.value,
+//             totalAtividades: document.querySelector(`[name="atividadesUnidade${i}"]`)?.value
+//         };
 
-        const encontros = [];
-        const totalEncontros = unidade.totalEncontros;
-        if (totalEncontros) {
-            for (let j = 1; j <= totalEncontros; j++) {
-                const encontro = {
-                    encontroTipo: document.querySelector(`[name="encontroTipo${i}_${j}"]`)?.value,
-                    dataEncontro: document.querySelector(`[name="dataEncontro${i}_${j}"]`)?.value,
-                    chEncontro: document.querySelector(`[name="chEncontro${i}_${j}"]`)?.value,
-                    inicioAula: document.querySelector(`[name="inicioAula${i}_${j}"]`)?.value,
-                    fimAula: document.querySelector(`[name="fimAula${i}_${j}"]`)?.value,
-                    frequenciaEncontro: document.querySelector(`[name="frequenciaEncontro${i}_${j}"]`)?.value,
-                    descricaoEncontro: document.querySelector(`[name="descricaoEncontro${i}_${j}"]`)?.value,
-                };
-                encontros.push(encontro);
-            }
-        }
-        unidade.encontros = encontros;
+//         const encontros = [];
+//         const totalEncontros = unidade.totalEncontros;
+//         if (totalEncontros) {
+//             for (let j = 1; j <= totalEncontros; j++) {
+//                 const encontro = {
+//                     encontroTipo: document.querySelector(`[name="encontroTipo${i}_${j}"]`)?.value,
+//                     dataEncontro: document.querySelector(`[name="dataEncontro${i}_${j}"]`)?.value,
+//                     chEncontro: document.querySelector(`[name="chEncontro${i}_${j}"]`)?.value,
+//                     inicioAula: document.querySelector(`[name="inicioAula${i}_${j}"]`)?.value,
+//                     fimAula: document.querySelector(`[name="fimAula${i}_${j}"]`)?.value,
+//                     frequenciaEncontro: document.querySelector(`[name="frequenciaEncontro${i}_${j}"]`)?.value,
+//                     descricaoEncontro: document.querySelector(`[name="descricaoEncontro${i}_${j}"]`)?.value,
+//                 };
+//                 encontros.push(encontro);
+//             }
+//         }
+//         unidade.encontros = encontros;
 
-        const atividades = [];
-        const totalAtividades = unidade.totalAtividades;
-        if (totalAtividades) {
-            for (let k = 1; k <= totalAtividades; k++) {
-                const atividade = {
-                    atividadeTipo: document.querySelector(`[name="atividadeTipo${i}_${k}"]`)?.value,
-                    chAtividade: document.querySelector(`[name="chAtividade${i}_${k}"]`)?.value,
-                    pesoAtividade: document.querySelector(`[name="pesoAtividade${i}_${k}"]`)?.value,
-                    avaliacaoAtividade: document.querySelector(`[name="avaliacaoAtividade${i}_${k}"]`)?.value,
-                    frequenciaAtividade: document.querySelector(`[name="frequenciaAtividade${i}_${k}"]`)?.value,
-                    tituloAtividade: document.querySelector(`[name="tituloAtividade${i}_${k}"]`)?.value,
-                    descricaoAtividade: document.querySelector(`[name="descricaoAtividade${i}_${k}"]`)?.value,
-                };
-                atividades.push(atividade);
-            }
-        }
-        unidade.atividades = atividades;
+//         const atividades = [];
+//         const totalAtividades = unidade.totalAtividades;
+//         if (totalAtividades) {
+//             for (let k = 1; k <= totalAtividades; k++) {
+//                 const atividade = {
+//                     atividadeTipo: document.querySelector(`[name="atividadeTipo${i}_${k}"]`)?.value,
+//                     chAtividade: document.querySelector(`[name="chAtividade${i}_${k}"]`)?.value,
+//                     pesoAtividade: document.querySelector(`[name="pesoAtividade${i}_${k}"]`)?.value,
+//                     avaliacaoAtividade: document.querySelector(`[name="avaliacaoAtividade${i}_${k}"]`)?.value,
+//                     frequenciaAtividade: document.querySelector(`[name="frequenciaAtividade${i}_${k}"]`)?.value,
+//                     tituloAtividade: document.querySelector(`[name="tituloAtividade${i}_${k}"]`)?.value,
+//                     descricaoAtividade: document.querySelector(`[name="descricaoAtividade${i}_${k}"]`)?.value,
+//                 };
+//                 atividades.push(atividade);
+//             }
+//         }
+//         unidade.atividades = atividades;
 
-        unidades.push(unidade);
-    }
+//         unidades.push(unidade);
+//     }
 
-    formData.unidades = unidades;
+//     formData.unidades = unidades;
 
-    localStorage.setItem("formData", JSON.stringify(formData));
+//     localStorage.setItem("formData", JSON.stringify(formData));
 
-    alert("Dados salvos com sucesso!");
-});
+//     alert("Dados salvos com sucesso!");
+// });
 
-function carregarDados() {
-    const savedData = localStorage.getItem("formData");
-    if (savedData) {
-        const formData = JSON.parse(savedData);
+// function carregarDados() {
+//     const savedData = localStorage.getItem("formData");
+//     if (savedData) {
+//         const formData = JSON.parse(savedData);
         
-        document.getElementById("curso").value = formData.curso;
-        document.getElementById("disciplina").value = formData.disciplina;
-        document.getElementById("semestre").value = formData.semestre;
-        document.getElementById("periodoPlanejamento").value = formData.periodoPlanejamento;
-        document.getElementById("periodoOferta").value = formData.periodoOferta;
-        document.getElementById("formatoOferta").value = formData.formatoOferta;
-        document.getElementById("professor").value = formData.professor;
-        if (formData.modeloFoto) {
-            document.querySelector(`input[name="modeloFoto"][value="${formData.modeloFoto}"]`).checked = true;
-        }
-        document.getElementById("comentario").value = formData.comentario;
-        document.getElementById("cargaTotal").value = formData.cargaTotal;
-        document.getElementById("cargaDistancia").value = formData.cargaDistancia;
-        document.getElementById("cargaSincrona").value = formData.cargaSincrona;
-        document.getElementById("cargaAssincrona").value = formData.cargaAssincrona;
-        document.getElementById("cargaPresencial").value = formData.cargaPresencial;
-        document.getElementById("totalUnidades").value = formData.totalUnidades;
+//         document.getElementById("curso").value = formData.curso;
+//         document.getElementById("disciplina").value = formData.disciplina;
+//         document.getElementById("semestre").value = formData.semestre;
+//         document.getElementById("periodoPlanejamento").value = formData.periodoPlanejamento;
+//         document.getElementById("periodoOferta").value = formData.periodoOferta;
+//         document.getElementById("formatoOferta").value = formData.formatoOferta;
+//         document.getElementById("professor").value = formData.professor;
+//         if (formData.modeloFoto) {
+//             document.querySelector(`input[name="modeloFoto"][value="${formData.modeloFoto}"]`).checked = true;
+//         }
+//         document.getElementById("comentario").value = formData.comentario;
+//         document.getElementById("cargaTotal").value = formData.cargaTotal;
+//         document.getElementById("cargaDistancia").value = formData.cargaDistancia;
+//         document.getElementById("cargaSincrona").value = formData.cargaSincrona;
+//         document.getElementById("cargaAssincrona").value = formData.cargaAssincrona;
+//         document.getElementById("cargaPresencial").value = formData.cargaPresencial;
+//         document.getElementById("totalUnidades").value = formData.totalUnidades;
 
-        formData.unidades.forEach((unidade, i) => {
-            document.querySelector(`[name="unidade${i + 1}"]`).value = unidade.unidade;
-            document.querySelector(`[name="chSemestre${i + 1}"]`).value = unidade.chSemestre;
-            document.querySelector(`[name="inicioPeriodo${i + 1}"]`).value = unidade.inicioPeriodo;
-            document.querySelector(`[name="fimPeriodo${i + 1}"]`).value = unidade.fimPeriodo;
-            document.querySelector(`[name="tituloUnidade${i + 1}"]`).value = unidade.tituloUnidade;
-            document.querySelector(`[name="descricaoUnidade${i + 1}"]`).value = unidade.descricaoUnidade;
+//         formData.unidades.forEach((unidade, i) => {
+//             document.querySelector(`[name="unidade${i + 1}"]`).value = unidade.unidade;
+//             document.querySelector(`[name="chSemestre${i + 1}"]`).value = unidade.chSemestre;
+//             document.querySelector(`[name="inicioPeriodo${i + 1}"]`).value = unidade.inicioPeriodo;
+//             document.querySelector(`[name="fimPeriodo${i + 1}"]`).value = unidade.fimPeriodo;
+//             document.querySelector(`[name="tituloUnidade${i + 1}"]`).value = unidade.tituloUnidade;
+//             document.querySelector(`[name="descricaoUnidade${i + 1}"]`).value = unidade.descricaoUnidade;
 
-            unidade.encontros.forEach((encontro, j) => {
-                document.querySelector(`[name="encontroTipo${i + 1}_${j + 1}"]`).value = encontro.encontroTipo;
-                document.querySelector(`[name="dataEncontro${i + 1}_${j + 1}"]`).value = encontro.dataEncontro;
-                document.querySelector(`[name="chEncontro${i + 1}_${j + 1}"]`).value = encontro.chEncontro;
-                document.querySelector(`[name="inicioAula${i + 1}_${j + 1}"]`).value = encontro.inicioAula;
-                document.querySelector(`[name="fimAula${i + 1}_${j + 1}"]`).value = encontro.fimAula;
-                document.querySelector(`[name="frequenciaEncontro${i + 1}_${j + 1}"]`).value = encontro.frequenciaEncontro;
-                document.querySelector(`[name="descricaoEncontro${i + 1}_${j + 1}"]`).value = encontro.descricaoEncontro;
-            });
+//             unidade.encontros.forEach((encontro, j) => {
+//                 document.querySelector(`[name="encontroTipo${i + 1}_${j + 1}"]`).value = encontro.encontroTipo;
+//                 document.querySelector(`[name="dataEncontro${i + 1}_${j + 1}"]`).value = encontro.dataEncontro;
+//                 document.querySelector(`[name="chEncontro${i + 1}_${j + 1}"]`).value = encontro.chEncontro;
+//                 document.querySelector(`[name="inicioAula${i + 1}_${j + 1}"]`).value = encontro.inicioAula;
+//                 document.querySelector(`[name="fimAula${i + 1}_${j + 1}"]`).value = encontro.fimAula;
+//                 document.querySelector(`[name="frequenciaEncontro${i + 1}_${j + 1}"]`).value = encontro.frequenciaEncontro;
+//                 document.querySelector(`[name="descricaoEncontro${i + 1}_${j + 1}"]`).value = encontro.descricaoEncontro;
+//             });
 
-            unidade.atividades.forEach((atividade, k) => {
-                document.querySelector(`[name="atividadeTipo${i + 1}_${k + 1}"]`).value = atividade.atividadeTipo;
-                document.querySelector(`[name="chAtividade${i + 1}_${k + 1}"]`).value = atividade.chAtividade;
-                document.querySelector(`[name="pesoAtividade${i + 1}_${k + 1}"]`).value = atividade.pesoAtividade;
-                document.querySelector(`[name="avaliacaoAtividade${i + 1}_${k + 1}"]`).value = atividade.avaliacaoAtividade;
-                document.querySelector(`[name="frequenciaAtividade${i + 1}_${k + 1}"]`).value = atividade.frequenciaAtividade;
-                document.querySelector(`[name="tituloAtividade${i + 1}_${k + 1}"]`).value = atividade.tituloAtividade;
-                document.querySelector(`[name="descricaoAtividade${i + 1}_${k + 1}"]`).value = atividade.descricaoAtividade;
-            });
-        });
-    }
-}
+//             unidade.atividades.forEach((atividade, k) => {
+//                 document.querySelector(`[name="atividadeTipo${i + 1}_${k + 1}"]`).value = atividade.atividadeTipo;
+//                 document.querySelector(`[name="chAtividade${i + 1}_${k + 1}"]`).value = atividade.chAtividade;
+//                 document.querySelector(`[name="pesoAtividade${i + 1}_${k + 1}"]`).value = atividade.pesoAtividade;
+//                 document.querySelector(`[name="avaliacaoAtividade${i + 1}_${k + 1}"]`).value = atividade.avaliacaoAtividade;
+//                 document.querySelector(`[name="frequenciaAtividade${i + 1}_${k + 1}"]`).value = atividade.frequenciaAtividade;
+//                 document.querySelector(`[name="tituloAtividade${i + 1}_${k + 1}"]`).value = atividade.tituloAtividade;
+//                 document.querySelector(`[name="descricaoAtividade${i + 1}_${k + 1}"]`).value = atividade.descricaoAtividade;
+//             });
+//         });
+//     }
+// }
 
 
-window.onload = carregarDados;
+// window.onload = carregarDados;
