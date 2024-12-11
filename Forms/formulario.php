@@ -8,13 +8,14 @@
 </head>
 <body>
     <h2>MATRIZ DE PLANEJAMENTO E DESIGN EDUCACIONAL</h2>
-    <form id="dynamicForm" method="POST" action="processo.php">
+    <form id="dynamicForm" method="POST" action="controller/processa.php">
         <h2>DADOS GERAIS</h2>
         <div class="form-group">
             <label for="curso">Curso</label>
             <input type="text" id="curso" name="curso">
         </div>
         <div class="form-group">
+            
             <label for="disciplina">Disciplina</label>
             <input type="text" id="disciplina" name="disciplina">
         </div>
@@ -27,6 +28,7 @@
             <input type="text" id="periodoPlanejamento" name="periodoPlanejamento">
         </div>
         <div class="form-group">
+            
             <label for="periodoOferta">Período letivo de oferta</label>
             <input type="text" id="periodoOferta" name="periodoOferta">
         </div>
@@ -96,10 +98,13 @@
         </div>
 
         <div id="dynamic-fields"></div>
-
-        <button type="button" id="salvarDados">Salvar</button>
+    <input type="submit" id="salvarDados" name="Salvar">
+        
     </form>
 
     <script src="script.js"></script>
+
+    
 </body>
+
 </html>
