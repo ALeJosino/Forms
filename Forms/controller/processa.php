@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $totalUnidades = (int)$_POST['totalUnidades'];
         for ($unidadeIndex = 1; $unidadeIndex <= $totalUnidades; $unidadeIndex++) {
             $unidadeData = [
-                ':idmatriz' => $idmatriz,
+                ':idmatriz' => $_POST['idmatriz'] ?? null,
                 ':nome_unidade' => $_POST["nomeUnidade{$unidadeIndex}"] ?? null,
                 ':ch_semestre' => $_POST["chSemestre{$unidadeIndex}"] ?? null,
                 ':ch_unidade' => $_POST["chUnidade{$unidadeIndex}"] ?? null,
