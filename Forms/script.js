@@ -202,6 +202,63 @@ function generateActivities(unitNumber, numActivities) {
     }
 }
 
+function validateCH() {
+    let totalCHSinc = 0;
+    let totalCHPresencial = 0;
+
+    for (let i = 1; i <= 8; i++) {
+
+        const totalEncontrosElement = document.getElementById(`totalEncontros${i}`);
+        
+        if (!totalEncontrosElement) {
+            console.error(`Elemento com ID totalEncontros${i} não encontrado.`);
+            continue;
+        }
+
+        const numEncontros = parseInt(totalEncontrosElement.value, 10);
+
+        if (isNaN(numEncontros)) {
+            console.error(`Valor inválido para o número de encontros na unidade ${i}: ${totalEncontrosElement.value}`);
+            continue;
+        }
+
+        for (let j = 1; j <= numEncontros; j++) { 
+            const encontroTipo = document.querySelector(`[name="encontroTipo${i}_${j}"]`).value; 
+            const chEncontro = parseFloat(document.querySelector(`[name="chEncontro${i}_${j}"]`).value);
+
+            if (encontroTipo === "Síncrono" && !isNaN(chEncontro)) {
+                totalCHSinc += chEncontro;
+            }
+
+            if (encontroTipo === "Presencial" && !isNaN(chEncontro)) {
+                totalCHPresencial += chEncontro;
+            }
+        }
+    }
+
+    const chSincInput = parseFloat(document.getElementById("chSincInput").value);
+    const chPresencialInput = parseFloat(document.getElementById("chPresencialInput").value); 
+
+    if (isNaN(chSincInput)) {
+        alert("Por favor, insira um valor válido para a CH síncrona.");
+        return;
+    }
+    if (totalCHSinc !== chSincInput) {
+        alert(`A soma da CH síncrona (${totalCHSinc}) não é igual à CH síncrona fornecida (${chSincInput}).`);
+    } else {
+        alert("Validação da CH síncrona bem-sucedida.");
+    }
+
+    if (isNaN(chPresencialInput)) {
+        alert("Por favor, insira um valor válido para a Carga horária presencial.");
+        return;
+    }
+    if (totalCHPresencial !== chPresencialInput) {
+        alert(`A soma da CH presencial (${totalCHPresencial}) não é igual à Carga horária presencial fornecida (${chPresencialInput}).`);
+    } else {
+        alert("Validação da CH presencial bem-sucedida.");
+    }
+}
 // document.getElementById("salvarDados").addEventListener("click", function() {
 //     const formData = {};
 
