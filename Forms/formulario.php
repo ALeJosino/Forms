@@ -71,16 +71,16 @@
             <input type="text" id="cargaDistancia" name="cargaDistancia">
         </div>
         <div class="form-group">
-            <label for="cargaSincrona">CH síncrona (meets)</label>
-            <input type="text" id="cargaSincrona" name="cargaSincrona">
+           <label for="chSincInput">CH síncrona (meets)</label>
+            <input type="text" id="chSincInput" name="chSincInput" class="input-field">
         </div>
         <div class="form-group">
             <label for="cargaAssincrona">CH assíncrona</label>
             <input type="text" id="cargaAssincrona" name="cargaAssincrona">
         </div>
         <div class="form-group">
-            <label for="cargaPresencial">Carga horária presencial</label>
-            <input type="text" id="cargaPresencial" name="cargaPresencial">
+            <label for="chPresencialInput">Carga horária presencial</label>
+            <input type="text" id="chPresencialInput" name="chPresencialInput" class="input-field">
         </div>
         <div class="form-group">
             <label for="totalUnidades">Total de unidades da disciplina</label>
@@ -98,7 +98,7 @@
         </div>
 
         <div id="dynamic-fields"></div>
-    <input type="submit" id="salvarDados" name="Salvar">
+        <button type="button" id="salvarDados" onclick="validateCH()">Salvar</button>
         
     </form>
 
