@@ -201,14 +201,46 @@ function generateActivities(unitNumber, numActivities) {
         activitiesContainer.appendChild(activitySection);
     }
 }
+function validar() {
+        let totalCHSinc = 0;
+        let totalCHPresencial = 0;
+        let totalCHAtividades = 0;
+        const totalUnidades = document.getElementById("totalUnidades").value;
+        
+        for (let i = 1; i <= totalUnidades; i++) {
+            const totalAtividades = document.getElementById(`atividadesUnidade${i}`).value;
 
-function validateCH() {
-    let totalCHSinc = 0;
-    let totalCHPresencial = 0;
+            if (isNaN(totalAtividades) || totalAtividades <= 0) {
+                console.error(`Valor inválido para o número de atividades na unidade ${i}`);
+                continue;
+            }
 
-    for (let i = 1; i <= 8; i++) {
+            for (let j = 1; j <= totalAtividades; j++) {
+                const chAtividade = parseFloat(document.querySelector(`[name="chAtividade${i}_${j}"]`).value);
+                if (!isNaN(chAtividade)) {
+                    totalCHAtividades += chAtividade; 
+                }
+            }
+        }
 
-        const totalEncontrosElement = document.getElementById(`totalEncontros${i}`);
+    const chAssincrona = parseFloat(document.getElementById("chAssincrona").value);
+        if (isNaN(chAssincrona) || chAssincrona <= 0) {
+            alert("Por favor, insira um valor válido para a CH assíncrona.");
+            return;
+        }
+
+        if (totalCHAtividades !== chAssincrona) {
+            alert(`A soma de todas as CH das atividades é ${totalCHAtividades}. O valor de CH assíncrona está incorreto.`);
+            return;
+        }
+
+        alert("A soma das CH das atividades está correta!");
+
+    let totalCHSincLocal = 0;
+    let totalCHPresencialLocal = 0;
+
+        for (let i = 1; i <= 8; i++) {
+    const totalEncontrosElement = document.getElementById(`totalEncontros${i}`);
         
         if (!totalEncontrosElement) {
             console.error(`Elemento com ID totalEncontros${i} não encontrado.`);
@@ -227,11 +259,11 @@ function validateCH() {
             const chEncontro = parseFloat(document.querySelector(`[name="chEncontro${i}_${j}"]`).value);
 
             if (encontroTipo === "Síncrono" && !isNaN(chEncontro)) {
-                totalCHSinc += chEncontro;
+                totalCHSincLocal += chEncontro;
             }
 
             if (encontroTipo === "Presencial" && !isNaN(chEncontro)) {
-                totalCHPresencial += chEncontro;
+                totalCHPresencialLocal += chEncontro;
             }
         }
     }
@@ -243,8 +275,8 @@ function validateCH() {
         alert("Por favor, insira um valor válido para a CH síncrona.");
         return;
     }
-    if (totalCHSinc !== chSincInput) {
-        alert(`A soma da CH síncrona (${totalCHSinc}) não é igual à CH síncrona fornecida (${chSincInput}).`);
+    if (totalCHSincLocal !== chSincInput) {
+        alert(`A soma da CH síncrona (${totalCHSincLocal}) não é igual à CH síncrona fornecida (${chSincInput}).`);
     } else {
         alert("Validação da CH síncrona bem-sucedida.");
     }
@@ -253,8 +285,8 @@ function validateCH() {
         alert("Por favor, insira um valor válido para a Carga horária presencial.");
         return;
     }
-    if (totalCHPresencial !== chPresencialInput) {
-        alert(`A soma da CH presencial (${totalCHPresencial}) não é igual à Carga horária presencial fornecida (${chPresencialInput}).`);
+    if (totalCHPresencialLocal !== chPresencialInput) {
+        alert(`A soma da CH presencial (${totalCHPresencialLocal}) não é igual à Carga horária presencial fornecida (${chPresencialInput}).`);
     } else {
         alert("Validação da CH presencial bem-sucedida.");
     }

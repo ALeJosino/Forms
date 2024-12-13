@@ -98,7 +98,7 @@
         </div>
 
         <div id="dynamic-fields"></div>
-        <button type="button" id="salvarDados" onclick="validateCH()">Salvar</button>
+        <button type="button" id="salvarDados" onclick="validar()">Salvar</button>
         
     </form>
 
