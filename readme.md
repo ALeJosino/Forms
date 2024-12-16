@@ -1,0 +1,2 @@
+1. validar "CH assíncrona"
+> Para validar preciso saber somar todas as "CH da atividade" para bater com o valor inserido na "CH assíncrona" percorrendo todas as 8 unidades e todos os campos de atividades. lembrando que os campos de atividades são dinamicos
