@@ -42,6 +42,12 @@
         </div>
         
         <h2>COMPOSIÇÃO DE NOTA</h2>
+        <p>
+AD - atividades/avaliações a distância (atividades/ferramentas do AVA) </br>
+AP - avaliações presenciais (provas, seminários etc.) </br>
+MAD - média das atividades/avaliações a distância </br>
+MAP - média das avaliações presenciais </br>
+        </p>
         <div class="photo-options">
             <label>
                 <input type="radio" name="modeloFoto" value="modelo1">
