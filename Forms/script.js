@@ -201,46 +201,66 @@ function generateActivities(unitNumber, numActivities) {
         activitiesContainer.appendChild(activitySection);
     }
 }
+function showModal(message) {
+    const modal = document.getElementById("modal");
+    const modalMessage = document.getElementById("modal-message");
+    
+    modalMessage.textContent = message;
+    modal.style.display = "block";
+}
+
+function closeModal() {
+    const modal = document.getElementById("modal");
+    modal.style.display = "none"; 
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById("modal");
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
 function validar() {
-        let totalCHSinc = 0;
-        let totalCHPresencial = 0;
-        let totalCHAtividades = 0;
-        const totalUnidades = document.getElementById("totalUnidades").value;
-        
-        for (let i = 1; i <= totalUnidades; i++) {
-            const totalAtividades = document.getElementById(`atividadesUnidade${i}`).value;
+    let totalCHSinc = 0;
+    let totalCHPresencial = 0;
+    let totalCHAtividades = 0;
+    let errosAtividades = "";
+    let errosEncontros = "";  
+    let errosCargaHoraria = "";
+    const totalUnidades = document.getElementById("totalUnidades").value;
 
-            if (isNaN(totalAtividades) || totalAtividades <= 0) {
-                console.error(`Valor inválido para o número de atividades na unidade ${i}`);
-                continue;
-            }
+    for (let i = 1; i <= totalUnidades; i++) {
+        const totalAtividades = document.getElementById(`atividadesUnidade${i}`).value;
 
-            for (let j = 1; j <= totalAtividades; j++) {
-                const chAtividade = parseFloat(document.querySelector(`[name="chAtividade${i}_${j}"]`).value);
-                if (!isNaN(chAtividade)) {
-                    totalCHAtividades += chAtividade; 
-                }
+        if (isNaN(totalAtividades) || totalAtividades <= 0) {
+            errosAtividades += createErrorMessage(`Valor inválido para o número de atividades na unidade ${i}.`);
+            continue;
+        }
+
+        for (let j = 1; j <= totalAtividades; j++) {
+            const chAtividade = parseFloat(document.querySelector(`[name="chAtividade${i}_${j}"]`).value);
+            if (!isNaN(chAtividade)) {
+                totalCHAtividades += chAtividade; 
             }
         }
+    }
+
 
     const chAssincrona = parseFloat(document.getElementById("chAssincrona").value);
-        if (isNaN(chAssincrona) || chAssincrona <= 0) {
-            alert("Por favor, insira um valor válido para a CH assíncrona.");
-            return;
-        }
-
+    if (isNaN(chAssincrona) || chAssincrona <= 0) {
+        errosCargaHoraria += createErrorMessage("Por favor, insira um valor válido para a CH assíncrona.");
+    } else {
         if (totalCHAtividades !== chAssincrona) {
-            alert(`A soma de todas as CH das atividades é ${totalCHAtividades}. O valor de CH assíncrona está incorreto.`);
-            return;
+            errosCargaHoraria += createErrorMessage(`A soma da CH das atividades (${totalCHAtividades}) não é igual à CH assíncrona fornecida (${chAssincrona}).`);
         }
-
-        alert("A soma das CH das atividades está correta!");
+    }
 
     let totalCHSincLocal = 0;
     let totalCHPresencialLocal = 0;
 
-        for (let i = 1; i <= 8; i++) {
-    const totalEncontrosElement = document.getElementById(`totalEncontros${i}`);
+    for (let i = 1; i <= 8; i++) {
+        const totalEncontrosElement = document.getElementById(`totalEncontros${i}`);
         
         if (!totalEncontrosElement) {
             console.error(`Elemento com ID totalEncontros${i} não encontrado.`);
@@ -250,7 +270,7 @@ function validar() {
         const numEncontros = parseInt(totalEncontrosElement.value, 10);
 
         if (isNaN(numEncontros)) {
-            console.error(`Valor inválido para o número de encontros na unidade ${i}: ${totalEncontrosElement.value}`);
+            errosEncontros += createErrorMessage(`Valor inválido para o número de encontros na unidade ${i}.`);
             continue;
         }
 
@@ -269,26 +289,87 @@ function validar() {
     }
 
     const chSincInput = parseFloat(document.getElementById("chSincInput").value);
-    const chPresencialInput = parseFloat(document.getElementById("chPresencialInput").value); 
-
     if (isNaN(chSincInput)) {
-        alert("Por favor, insira um valor válido para a CH síncrona.");
-        return;
-    }
-    if (totalCHSincLocal !== chSincInput) {
-        alert(`A soma da CH síncrona (${totalCHSincLocal}) não é igual à CH síncrona fornecida (${chSincInput}).`);
+        errosCargaHoraria += createErrorMessage("Por favor, insira um valor válido para a CH síncrona.");
     } else {
-        alert("Validação da CH síncrona bem-sucedida.");
+        if (totalCHSincLocal !== chSincInput) {
+            errosCargaHoraria += createErrorMessage(`A soma da CH síncrona (${totalCHSincLocal}) não é igual à CH síncrona fornecida (${chSincInput}).`);
+        }
     }
 
+    const chPresencialInput = parseFloat(document.getElementById("chPresencialInput").value); 
     if (isNaN(chPresencialInput)) {
-        alert("Por favor, insira um valor válido para a Carga horária presencial.");
-        return;
-    }
-    if (totalCHPresencialLocal !== chPresencialInput) {
-        alert(`A soma da CH presencial (${totalCHPresencialLocal}) não é igual à Carga horária presencial fornecida (${chPresencialInput}).`);
+        errosCargaHoraria += createErrorMessage("Por favor, insira um valor válido para a Carga horária presencial.");
     } else {
-        alert("Validação da CH presencial bem-sucedida.");
+        if (totalCHPresencialLocal !== chPresencialInput) {
+            errosCargaHoraria += createErrorMessage(`A soma da CH presencial (${totalCHPresencialLocal}) não é igual à Carga horária presencial fornecida (${chPresencialInput}).`);
+        }
+    }
+
+    const cargaHorariaDistancia = parseFloat(document.getElementById("cargaDistancia").value);
+    if (isNaN(cargaHorariaDistancia) || cargaHorariaDistancia <= 0) {
+        errosCargaHoraria += createErrorMessage("Por favor, insira um valor válido para a Carga Horária a Distância.");
+    } else {
+        const somaCHDistancia = chSincInput + chAssincrona;
+        if (somaCHDistancia !== cargaHorariaDistancia) {
+            errosCargaHoraria += createErrorMessage(`A soma de CH síncrona (${chSincInput}) + CH assíncrona (${chAssincrona}) não é igual à Carga Horária a Distância fornecida (${cargaHorariaDistancia}).`);
+        }
+    }
+
+    const cargaTotal = parseFloat(document.getElementById("cargaTotal").value);
+    if (isNaN(cargaTotal) || cargaTotal <= 0) {
+        errosCargaHoraria += createErrorMessage("Por favor, insira um valor válido para a Carga Horária Total da Disciplina.");
+    } else {
+        const somaCHPresencialDistancia = chPresencialInput + cargaHorariaDistancia;
+        if (somaCHPresencialDistancia !== cargaTotal) {
+            errosCargaHoraria += createErrorMessage(`A soma da Carga Horária Presencial (${chPresencialInput}) + Carga Horária a Distância (${cargaHorariaDistancia}) não é igual à Carga Horária Total da Disciplina fornecida (${cargaTotal}).`);
+        }
+    }
+
+    let mensagemModal = "";
+
+    if (errosAtividades !== "" || errosEncontros !== "" || errosCargaHoraria !== "") {
+        mensagemModal += "<h3>Erros Encontrados:</h3>";
+
+        if (errosAtividades !== "") {
+            mensagemModal += "<h4>Erros de Atividades:</h4><ul>" + errosAtividades + "</ul>";
+        }
+
+        if (errosEncontros !== "") {
+            mensagemModal += "<h4>Erros de Encontros:</h4><ul>" + errosEncontros + "</ul>";
+        }
+
+        if (errosCargaHoraria !== "") {
+            mensagemModal += "<h4>Erros de Carga Horária:</h4><ul>" + errosCargaHoraria + "</ul>";
+        }
+        
+        showModal(mensagemModal); 
+    } else {
+        showModal("<h3>Validação bem-sucedida!</h3><p>Todos os valores estão corretos.</p>");
+    }
+}
+
+function createErrorMessage(message) {
+    return `<li>${message}</li>`;
+}
+
+function showModal(message) {
+    const modal = document.getElementById("modal");
+    const modalMessage = document.getElementById("modal-message");
+    
+    modalMessage.innerHTML = message;
+    modal.style.display = "block";
+}
+
+function closeModal() {
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById("modal");
+    if (event.target === modal) {
+        closeModal();
     }
 }
 // document.getElementById("salvarDados").addEventListener("click", function() {

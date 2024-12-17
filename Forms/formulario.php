@@ -64,19 +64,19 @@
         <h2>DISTRIBUIÇÃO DE CARGA HORÁRIA</h2>
         <div class="form-group">
             <label for="cargaTotal">Carga horária total da disciplina</label>
-            <input type="text" id="cargaTotal" name="cargaTotal">
+            <input type="text" id="cargaTotal" name="cargaTotal" class="input-field">
         </div>
         <div class="form-group">
             <label for="cargaDistancia">Carga horária a distância</label>
-            <input type="text" id="cargaDistancia" name="cargaDistancia">
+            <input type="text" id="cargaDistancia" name="cargaDistancia" class="input-field">            
         </div>
         <div class="form-group">
-           <label for="chSincInput">CH síncrona (meets)</label>
+            <label for="chSincInput">CH síncrona (meets)</label>
             <input type="text" id="chSincInput" name="chSincInput" class="input-field">
         </div>
         <div class="form-group">
-            <label for="cargaAssincrona">CH assíncrona</label>
-            <input type="text" id="cargaAssincrona" name="cargaAssincrona">
+            <label for="chAssincrona">CH Assíncrona</label>
+            <input type="text" id="chAssincrona" name="chAssincrona" class="input-field">
         </div>
         <div class="form-group">
             <label for="chPresencialInput">Carga horária presencial</label>
